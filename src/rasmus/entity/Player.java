@@ -10,6 +10,7 @@ public class Player extends Entity {
 
     private PlayerUI ui;
     private double health;
+    private double score;
 
     public Player(Sprite sprite, int x, int y) {
         super(sprite, x, y);
@@ -18,11 +19,14 @@ public class Player extends Entity {
 
         setSpeed(6);
         health = 100;
+        score = 0;
     }
 
     public void update() {
         super.update();
         ui.update();
+
+        score += 0.3;
 
         if(Keyboard.up) ya = -1;
         if(Keyboard.down) ya = 1;
@@ -67,5 +71,9 @@ public class Player extends Entity {
     public void addHealth(int health) {
         this.health += health;
         if(this.health > 100) this.health = 100;
+    }
+
+    public int getScore() {
+        return (int) score;
     }
 }

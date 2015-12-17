@@ -3,6 +3,7 @@ package rasmus.entity;
 import rasmus.*;
 import rasmus.graphics.Sprite;
 import rasmus.level.*;
+import rasmus.level.wave.*;
 
 import java.awt.Graphics;
 import java.util.*;

@@ -12,7 +12,7 @@ public class WaveHandler {
     private Level level;
 
     private int wave;
-    private double waveTime; /** Maybe score instead **/
+    private double waveTime;
     private double timeScienceLastWave;
 
     public WaveHandler(Level level) {
@@ -34,7 +34,7 @@ public class WaveHandler {
     public void render(Graphics g) {
         g.setColor(Color.LIGHT_GRAY);
         g.setFont(new Font("Helvetica", Font.PLAIN, 24));
-                g.drawString("Wave: " + Integer.toString(wave), Game.WIDTH - 120, 40);
+        g.drawString("Wave: " + Integer.toString(wave), Game.WIDTH - 120, 40);
     }
 
     private void nextWave() {
