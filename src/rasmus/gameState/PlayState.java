@@ -1,9 +1,7 @@
 package rasmus.gameState;
 
 import rasmus.entity.*;
-import rasmus.entity.blubs.*;
 import rasmus.entity.item.*;
-import rasmus.entity.particle.*;
 import rasmus.graphics.*;
 import rasmus.graphics.ui.*;
 import rasmus.level.*;
@@ -31,11 +29,14 @@ public class PlayState extends GameState {
 
         level.add(player);
 
-        level.add(new Test(Sprite.player, 500, 100));
-        level.add(new Test(Sprite.player, 200, 500));
+        ///// REAL
+
+        level.add(new EntityBasicRed(400, 400, 32, 32));
+
+        ///// TEST
 
         level.add(new ItemHeart(Sprite.item_heart, 345, 345));
-
+        level.add(new ItemStar(Sprite.item_star, 600, 400));
 
         menu = new UIButton(Sprite.buttonMenu, new Vector2i(15, 560));
     }

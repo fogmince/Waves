@@ -6,6 +6,7 @@ import rasmus.graphics.*;
 import rasmus.level.*;
 
 import java.awt.*;
+import java.util.*;
 
 public class WaveHandler {
 
@@ -15,11 +16,13 @@ public class WaveHandler {
     private double waveTime;
     private double timeScienceLastWave;
 
+    private final Random random = new Random();
+
     public WaveHandler(Level level) {
         this.level = level;
 
         wave = 1;
-        waveTime = 2;
+        waveTime = 10;
         timeScienceLastWave = 0;
     }
 
@@ -40,11 +43,10 @@ public class WaveHandler {
     private void nextWave() {
         wave++;
         timeScienceLastWave = 0;
-        System.out.println(wave);
 
         switch (wave) {
-            case 4 :
-                level.add(new Test(Sprite.player, 404, 404));
+            case 1 :
+                level.add(new EntityBasicRed(random.nextInt(960), random.nextInt(640), 32, 32));
         }
     }
 

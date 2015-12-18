@@ -24,6 +24,7 @@ public class Sprite {
 
     //Items
     public static final Sprite item_heart = new Sprite(itemPath + "heart.png");
+    public static final Sprite item_star = new Sprite(itemPath + "star.png");
 
     private String path;
     private int width, height;

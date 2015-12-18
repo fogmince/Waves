@@ -31,6 +31,9 @@ public class Entity {
         height = sprite.getSprite().getHeight();
         xSpeed = 1;
         ySpeed = 1;
+
+        while (xa == 0) xa = random.nextInt(3) - 1;
+        while (ya == 0) ya = random.nextInt(3) - 1;
     }
 
     public void update() {
@@ -83,6 +86,18 @@ public class Entity {
     public double getSpeed() {
         if(xSpeed == ySpeed) return xSpeed;
         else return (xSpeed + ySpeed) / 2;
+    }
+
+    protected void setWidth(int width) {
+        this.width = width;
+    }
+
+    protected void setHeight(int height) {
+        this.height = height;
+    }
+
+    protected void setSqaure(int size) {
+        width = height = size;
     }
 
     public void remove() {

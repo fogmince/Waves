@@ -73,6 +73,10 @@ public class Player extends Entity {
         if(this.health > 100) this.health = 100;
     }
 
+    public void addScore(int score) {
+        this.score += score;
+    }
+
     public int getScore() {
         return (int) score;
     }

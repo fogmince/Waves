@@ -12,9 +12,6 @@ public class Test extends Entity {
         super(sprite, x, y);
         setXSpeed(5);
         setYSpeed(3);
-
-        while (xa == 0) xa = random.nextInt(3) - 1;
-        while (ya == 0) ya = random.nextInt(3) - 1;
     }
 
     int time = 0;
