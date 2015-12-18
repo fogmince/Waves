@@ -1,8 +1,7 @@
 package rasmus.level.wave;
 
 import rasmus.*;
-import rasmus.entity.*;
-import rasmus.graphics.*;
+import rasmus.entity.doodler.*;
 import rasmus.level.*;
 
 import java.awt.*;
@@ -21,17 +20,19 @@ public class WaveHandler {
     public WaveHandler(Level level) {
         this.level = level;
 
-        wave = 1;
+        wave = 0;
         waveTime = 10;
         timeScienceLastWave = 0;
     }
 
     public void update() {
+        if(wave == 0) {
+            nextWave();
+        }
+
         timeScienceLastWave += 0.0166666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666;
 
         if(timeScienceLastWave >= waveTime) nextWave();
-
-
     }
 
     public void render(Graphics g) {
@@ -47,6 +48,12 @@ public class WaveHandler {
         switch (wave) {
             case 1 :
                 level.add(new EntityBasicRed(random.nextInt(960), random.nextInt(640), 32, 32));
+                break;
+            case 2 :
+                level.add(new EntityBasicRed(random.nextInt(960), random.nextInt(640), 32, 32));
+                break;
+            case 3 :
+                level.add(new EntityBasicYellow(random.nextInt(960), random.nextInt(640), 32, 32));
         }
     }
 

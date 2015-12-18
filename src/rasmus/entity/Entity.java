@@ -37,6 +37,7 @@ public class Entity {
     }
 
     public void update() {
+        move();
     }
 
     protected void move() {

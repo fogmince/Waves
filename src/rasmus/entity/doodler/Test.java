@@ -1,6 +1,7 @@
-package rasmus.entity;
+package rasmus.entity.doodler;
 
 
+import rasmus.entity.*;
 import rasmus.entity.particle.*;
 import rasmus.graphics.*;
 

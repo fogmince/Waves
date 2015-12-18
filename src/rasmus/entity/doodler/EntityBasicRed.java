@@ -1,5 +1,6 @@
-package rasmus.entity;
+package rasmus.entity.doodler;
 
+import rasmus.entity.*;
 import rasmus.graphics.*;
 
 import java.awt.*;
@@ -11,10 +12,6 @@ public class EntityBasicRed extends Entity {
         setSpeed(6);
         setWidth(width);
         setHeight(height);
-    }
-
-    public void update() {
-        move();
     }
 
     public void render(Graphics g) {
