@@ -7,7 +7,6 @@ import java.util.List;
 public class UIHandler {
 
     private List<UIComponent> components = new ArrayList<>();
-    private List<UIButton> buttons = new ArrayList<>();
 
     public UIHandler() {
 
@@ -35,5 +34,9 @@ public class UIHandler {
 
     public int getAmountOfComponents() {
         return components.size();
+    }
+
+    public void removeComponent(int i) {
+        components.remove(i);
     }
 }

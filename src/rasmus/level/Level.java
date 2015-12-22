@@ -14,6 +14,8 @@ public class Level {
     private List<Particle> particles = new ArrayList<>();
     private List<Item> items = new ArrayList<>();
 
+    private List<String> text = new ArrayList<>();
+
     public Level() {
 
     }
@@ -73,6 +75,12 @@ public class Level {
         }
 
         e.setLevel(this);
+    }
+
+    public void clearEntities() {
+        entities.clear();
+        particles.clear();
+        items.clear();
     }
 
     public Entity getNearestEntity(Entity e, double range) {

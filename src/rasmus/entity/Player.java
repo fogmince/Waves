@@ -17,14 +17,13 @@ public class Player extends Entity {
 
         ui = new PlayerUI(this);
 
-        this.sprite = Sprite.rotate(sprite, 0);
-
         setSpeed(6);
         health = 100;
         score = 0;
     }
 
     int time = 0;
+    double rotation;
 
     public void update() {
         super.update();
@@ -45,16 +44,10 @@ public class Player extends Entity {
             dealDmg(0.5);
         }
 
-        /**
-         * TODO: Rotation stuffs
-         */
-
-       /* if(time % 20 == 0) {
-            sprite = Sprite.rotate(sprite, 360);
-        }*/
-
         xa = 0;
         ya = 0;
+
+        //System.out.println("X: " + x + ", Y: " + y);
     }
 
     protected void move() {
@@ -94,5 +87,9 @@ public class Player extends Entity {
 
     public int getScore() {
         return (int) score;
+    }
+
+    public PlayerUI getUI() {
+        return ui;
     }
 }

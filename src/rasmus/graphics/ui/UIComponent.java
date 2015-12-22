@@ -10,6 +10,8 @@ public class UIComponent {
 
     protected Color color;
 
+    private boolean removed = false;
+
     public UIComponent(Vector2i position) {
         this.position = position;
         color = Color.DARK_GRAY;
@@ -35,5 +37,13 @@ public class UIComponent {
     public UIComponent setColor(Color color) {
         this.color = color;
         return this;
+    }
+
+    public void remove() {
+        removed = true;
+    }
+
+    public boolean isRemoved() {
+        return removed;
     }
 }

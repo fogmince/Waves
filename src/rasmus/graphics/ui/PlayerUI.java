@@ -9,6 +9,8 @@ import rasmus.level.wave.*;
 import rasmus.util.*;
 
 import java.awt.*;
+import java.util.*;
+import java.util.List;
 
 public class PlayerUI {
 
@@ -46,6 +48,14 @@ public class PlayerUI {
         } else {
             healthAmount.setPosition(100, 58);
         }
+
+        for(int i = 0; i < handler.getAmountOfComponents(); i++) {
+            if(handler.getComponent(i).isRemoved()) handler.removeComponent(i);
+        }
+    }
+
+    public void addPickUpText(String text, double time, double x, double y, Color color) {
+        handler.addComponent(new UIPickupText(new Vector2i((int) x, (int) y), text, time, color));
     }
 
     public void render(Graphics g) {

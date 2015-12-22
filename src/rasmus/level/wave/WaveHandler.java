@@ -2,6 +2,8 @@ package rasmus.level.wave;
 
 import rasmus.*;
 import rasmus.entity.doodler.*;
+import rasmus.entity.item.*;
+import rasmus.graphics.*;
 import rasmus.level.*;
 
 import java.awt.*;
@@ -33,6 +35,9 @@ public class WaveHandler {
         timeScienceLastWave += 0.0166666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666;
 
         if(timeScienceLastWave >= waveTime) nextWave();
+
+
+        spawnItems();
     }
 
     public void render(Graphics g) {
@@ -54,6 +59,16 @@ public class WaveHandler {
                 break;
             case 3 :
                 level.add(new EntityBasicYellow(random.nextInt(960), random.nextInt(640), 32, 32));
+        }
+    }
+
+    private void spawnItems() {
+        if(wave >= 1 && random.nextInt(500) == 0) {
+            if(random.nextBoolean()) {
+                level.add(new ItemStar(Sprite.item_star, random.nextInt(Game.WIDTH - 40), random.nextInt((Game.HEIGHT - 64))));
+            } else {
+                level.add(new ItemHeart(Sprite.item_heart, random.nextInt(Game.WIDTH - 40), random.nextInt(Game.HEIGHT - 64)));
+            }
         }
     }
 
