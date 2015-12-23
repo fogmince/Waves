@@ -41,7 +41,7 @@ public class WaveHandler {
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.LIGHT_GRAY);
+        g.setColor(new Color(0x08343A));
         g.setFont(new Font("Helvetica", Font.PLAIN, 24));
         g.drawString("Wave: " + Integer.toString(wave), Game.WIDTH - 120, 40);
     }

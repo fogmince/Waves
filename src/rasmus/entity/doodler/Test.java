@@ -30,10 +30,6 @@ public class Test extends Entity {
         }
 
         if(time % (5 + random.nextInt(15)) == 0) {
-            for(int i = 0; i < random.nextInt(3); i++) {
-                level.add(new Particle(Sprite.test_particle, (int) x + 8 + random.nextInt(8), (int) y + 2 + random.nextInt(30), 30 + random.nextInt(20), xa, ya));
-                level.add(new Particle(Sprite.test_particle, (int) x + 8 + random.nextInt(8), (int) y + 2 + random.nextInt(30), 30 + random.nextInt(20), xa, ya));
-            }
         }
 
         move();

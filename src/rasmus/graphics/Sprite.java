@@ -1,6 +1,7 @@
 package rasmus.graphics;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -20,7 +21,8 @@ public class Sprite {
     public static final Sprite player = new Sprite(entityPath + "player.png");
 
     //Particle
-    public static final Sprite test_particle = new Sprite(particlePath + "star.png");
+    public static final Sprite red_particle = new Sprite(0xFF0000, 8, 8);
+    public static final Sprite yellow_particle = new Sprite(0xFFFF00, 8, 8);
 
     //Items
     public static final Sprite item_heart = new Sprite(itemPath + "heart.png");

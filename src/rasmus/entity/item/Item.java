@@ -1,6 +1,5 @@
 package rasmus.entity.item;
 
-import rasmus.*;
 import rasmus.entity.*;
 import rasmus.graphics.*;
 
@@ -14,6 +13,12 @@ public class Item extends Entity {
     private double textTime;
     private Color textColor;
 
+    private double deSpawnTime = 10;
+    private int time;
+
+    private boolean blink = false;
+    private int renderTime = 0;
+
     public Item(Sprite sprite, double x, double y) {
         super(sprite, x, y);
         textX = x;
@@ -21,11 +26,33 @@ public class Item extends Entity {
     }
 
     public void update() {
+        time++;
 
+        if(time >= (getDeSpawnTime() - 3) * 60) {
+            blink = true;
+            renderTime++;
+
+            if(renderTime >= 30) renderTime = 0;
+        }
+
+        if(time >= getDeSpawnTime() * 60) onDeSpawn();
     }
 
     public void render(Graphics g) {
-        super.render(g);
+        if(!blink) super.render(g);
+        else {
+            if(renderTime > 20) {
+                super.render(g);
+            }
+        }
+    }
+
+    public void onDeSpawn() {
+        remove();
+        spawnParticles();
+    }
+
+    public void spawnParticles() {
     }
 
     protected boolean pickedUp() {
@@ -74,5 +101,13 @@ public class Item extends Entity {
 
     public Color getTextColor() {
         return textColor;
+    }
+
+    public void setDeSpawnTime(int time) {
+        deSpawnTime = time;
+    }
+
+    public double getDeSpawnTime() {
+        return deSpawnTime;
     }
 }

@@ -31,7 +31,7 @@ public class PlayerUI {
         healthAmount = new UILabel(new Vector2i(100, 58), String.valueOf(player.getHealth())).setColor(new Color(0xF4F5FF)).setFont(new Font("Arial", Font.ITALIC, 30));
         handler.addComponent(healthAmount);
 
-        score = new UILabel(new Vector2i(25, 90), "Score: " + String.valueOf(player.getScore())).setColor(Color.LIGHT_GRAY).setFont(new Font("Helvetica", Font.PLAIN, 18));
+        score = new UILabel(new Vector2i(25, 90), "Score: " + String.valueOf(player.getScore())).setColor(new Color(0x08343A)).setFont(new Font("Helvetica", Font.PLAIN, 18));
         handler.addComponent(score);
     }
 

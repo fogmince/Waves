@@ -1,24 +1,21 @@
 package rasmus.gameState;
 
-import rasmus.*;
 import rasmus.entity.*;
-import rasmus.entity.doodler.*;
-import rasmus.entity.item.*;
 import rasmus.graphics.*;
+import rasmus.graphics.background.*;
 import rasmus.graphics.ui.*;
-import rasmus.input.*;
 import rasmus.level.*;
 import rasmus.level.wave.*;
 import rasmus.util.*;
 
 import java.awt.*;
-import java.util.*;
 
 public class PlayState extends GameState {
 
     private Player player;
     private Level level;
     private WaveHandler wave;
+    private Background background;
 
     private UIButton menu;
 
@@ -33,6 +30,8 @@ public class PlayState extends GameState {
         level = new Level();
         wave  = new WaveHandler(level);
 
+        background = new Background();
+
         level.add(player);
 
         ///// TEST
@@ -42,15 +41,21 @@ public class PlayState extends GameState {
     }
 
     public void update() {
+        background.update();
         level.update();
         menu.update();
         wave.update();
 
 
         if(menu.isClicked()) gsm.setState(GameStateManager.MENU_STATE);
+
+        if(player.getHealth() == 0) {
+            gsm.setState(GameStateManager.SCORE_STATE);
+        }
     }
 
     public void render(Graphics g) {
+        background.render(g);
         level.render(g);
         menu.render(g);
         wave.render(g);

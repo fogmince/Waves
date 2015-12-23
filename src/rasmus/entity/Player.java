@@ -22,15 +22,11 @@ public class Player extends Entity {
         score = 0;
     }
 
-    int time = 0;
-    double rotation;
-
     public void update() {
         super.update();
         ui.update();
 
-        time++;
-
+        //SCORE PER UPDATE 18 per sec
         score += 0.3;
 
         if(Keyboard.up) ya = -1;
@@ -41,6 +37,7 @@ public class Player extends Entity {
         move();
 
         if(level.getNearestEntity(this, 10000) != null && level.entityCollision(level.getNearestEntity(this, 10000), this)) {
+            //DMG DEALT PER UPDATE 30 PER SEC
             dealDmg(0.5);
         }
 
