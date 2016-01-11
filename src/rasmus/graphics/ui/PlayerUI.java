@@ -3,14 +3,10 @@ package rasmus.graphics.ui;
 
 import rasmus.*;
 import rasmus.entity.*;
-import rasmus.entity.blubs.*;
-import rasmus.graphics.*;
 import rasmus.level.wave.*;
 import rasmus.util.*;
 
 import java.awt.*;
-import java.util.*;
-import java.util.List;
 
 public class PlayerUI {
 
@@ -20,6 +16,7 @@ public class PlayerUI {
     private UIProgressBar healthBar;
     private UILabel healthAmount;
     private UILabel score;
+    private UILabel wave;
 
     public PlayerUI(Player player) {
         this.player = player;
@@ -33,6 +30,9 @@ public class PlayerUI {
 
         score = new UILabel(new Vector2i(25, 90), "Score: " + String.valueOf(player.getScore())).setColor(new Color(0x08343A)).setFont(new Font("Helvetica", Font.PLAIN, 18));
         handler.addComponent(score);
+
+        wave = new UILabel(new Vector2i(Game.WIDTH - 120, 40), "Wave: 1").setColor(new Color(0x08343A)).setFont(new Font("Helvetica", Font.PLAIN, 24));
+        handler.addComponent(wave);
     }
 
 
@@ -42,20 +42,21 @@ public class PlayerUI {
         healthBar.setProgress(player.getHealth() / 100.0);
         healthAmount.setText(String.valueOf(player.getHealth()));
         score.setText("Score: " + String.valueOf(player.getScore()));
+        wave.setText("Wave: " + String.valueOf(player.getWave()));
 
         if(player.getHealth() < 10) {
             healthAmount.setPosition(110, 58);
         } else {
             healthAmount.setPosition(100, 58);
         }
-
-        for(int i = 0; i < handler.getAmountOfComponents(); i++) {
-            if(handler.getComponent(i).isRemoved()) handler.removeComponent(i);
-        }
     }
 
     public void addPickUpText(String text, double time, double x, double y, Color color) {
         handler.addComponent(new UIPickupText(new Vector2i((int) x, (int) y), text, time, color));
+    }
+
+    public void addButton(UIButton b) {
+        handler.addComponent(b);
     }
 
     public void render(Graphics g) {

@@ -1,5 +1,6 @@
 package rasmus.graphics.ui;
 
+import rasmus.*;
 import rasmus.graphics.Sprite;
 import rasmus.util.*;
 
@@ -11,8 +12,13 @@ public class MenuUI {
 
     private UIHandler handler;
 
+    private UISprite title;
+
     public MenuUI() {
         handler = new UIHandler();
+
+        title = new UISprite(new Vector2i(Game.WIDTH / 2 - Sprite.gameTitle.getSprite().getWidth() / 2, 20), Sprite.gameTitle);
+        handler.addComponent(title);
     }
 
     public void update() {

@@ -65,7 +65,7 @@ public class Background {
         }
 
         //RANDOM CHANGING BACKGROUND
-        if(!start) {
+        /*if(!start) {
             if(random.nextInt(500) == 0 && !changingColor) {
                 red1In = random.nextDouble() + random.nextInt(2) - 1;
                 green1In = random.nextDouble() + random.nextInt(2) - 1;
@@ -94,7 +94,7 @@ public class Background {
 
             color1 = new Color((int) red1, (int) green1, (int) blue1);
             color2 = new Color((int) red2, (int) green2, (int) blue2);
-        }
+        }*/
     }
 
     public void render(Graphics g) {

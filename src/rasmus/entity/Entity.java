@@ -51,6 +51,10 @@ public class Entity {
         if (ya > 0) y += ya * ySpeed;
     }
 
+    /**
+     * TODO: MAKE COLLISION WORK WITH OTHER ENTITY SIZES
+     */
+
     protected boolean collision(double xa, double ya) {
         boolean collision = false;
 

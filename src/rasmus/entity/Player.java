@@ -3,28 +3,30 @@ package rasmus.entity;
 import rasmus.graphics.Sprite;
 import rasmus.graphics.ui.*;
 import rasmus.input.*;
+import rasmus.level.wave.*;
 
 import java.awt.*;
 
 public class Player extends Entity {
 
     private PlayerUI ui;
+
     private double health;
     private double score;
+    private int wave;
 
     public Player(Sprite sprite, int x, int y) {
         super(sprite, x, y);
 
         ui = new PlayerUI(this);
 
-        setSpeed(6);
+        setSpeed(7);
         health = 100;
         score = 0;
     }
 
     public void update() {
         super.update();
-        ui.update();
 
         //SCORE PER UPDATE 18 per sec
         score += 0.3;
@@ -45,6 +47,13 @@ public class Player extends Entity {
         ya = 0;
 
         //System.out.println("X: " + x + ", Y: " + y);
+
+        ui.update();
+
+        if(health <= 0) {
+            level.clearEntities();
+            remove();
+        }
     }
 
     protected void move() {
@@ -88,5 +97,17 @@ public class Player extends Entity {
 
     public PlayerUI getUI() {
         return ui;
+    }
+
+    public boolean isDead() {
+        return isRemoved();
+    }
+
+    public int getWave() {
+        return wave;
+    }
+
+    public void setWave(int wave) {
+        this.wave = wave;
     }
 }

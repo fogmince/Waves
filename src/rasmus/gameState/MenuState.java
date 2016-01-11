@@ -1,7 +1,7 @@
 package rasmus.gameState;
 
 import rasmus.Game;
-import rasmus.entity.doodler.*;
+import rasmus.entity.*;
 import rasmus.graphics.Sprite;
 import rasmus.graphics.background.*;
 import rasmus.graphics.ui.*;
@@ -17,6 +17,7 @@ public class MenuState extends GameState {
     private Level level;
 
     private UIButton play;
+    private UIButton help;
     private UIButton quit;
 
     private MenuBackground bg;
@@ -28,19 +29,22 @@ public class MenuState extends GameState {
     }
 
     public void init() {
+        bg = new MenuBackground();
         level = new Level();
+        level.add(new EntitySquare(new Sprite(0xFF0000, 32, 32), random.nextInt(960), random.nextInt(640)));
 
-        level.add(new EntityBasicRed(random.nextInt(960), random.nextInt(940), 32, 32));
 
         ui = new MenuUI();
 
-        play = new UIButton(Sprite.buttonPlay, new Vector2i(Game.WIDTH / 2 - 100, 130));
+        play = new UIButton(Sprite.buttonPlay, new Vector2i(Game.WIDTH / 2 - 100, 190));
         ui.addButton(play);
 
-        quit = new UIButton(Sprite.buttonQuit, new Vector2i(Game.WIDTH / 2 - 103, 400));
+        help = new UIButton(Sprite.buttonHelp, new Vector2i(Game.WIDTH / 2 - 100, 335));
+        ui.addButton(help);
+
+        quit = new UIButton(Sprite.buttonQuit, new Vector2i(Game.WIDTH / 2 - 100, 480));
         ui.addButton(quit);
 
-        bg = new MenuBackground();
     }
 
     public void update() {

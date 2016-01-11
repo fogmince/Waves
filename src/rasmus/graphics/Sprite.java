@@ -13,9 +13,17 @@ public class Sprite {
     private static final String particlePath = "/textures/entity/particle/";
 
     //UI
+    public static final Sprite gameTitle = new Sprite(uiPath + "game_title.png");
     public static final Sprite buttonPlay = new Sprite(uiPath + "button_Play.png");
+    public static final Sprite buttonHelp = new Sprite(uiPath + "button_Help.png");
     public static final Sprite buttonQuit = new Sprite(uiPath + "button_Quit.png");
+
+    public static final Sprite gameGameOver = new Sprite(uiPath + "game_GameOver.png");
+
     public static final Sprite buttonMenu = new Sprite(uiPath + "button_Menu.png");
+
+    public static final Sprite buttonMenuBig = new Sprite(uiPath + "button_Menu_big.png");
+    public static final Sprite buttonRestart = new Sprite(uiPath + "button_Restart.png");
 
     //Entity
     public static final Sprite player = new Sprite(entityPath + "player.png");

@@ -83,6 +83,10 @@ public class Level {
         items.clear();
     }
 
+    public void clearItems() {
+        items.clear();
+    }
+
     public Entity getNearestEntity(Entity e, double range) {
         Entity nearest = null;
         double lastDistance = 10000;

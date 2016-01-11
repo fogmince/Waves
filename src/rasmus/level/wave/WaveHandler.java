@@ -1,12 +1,11 @@
 package rasmus.level.wave;
 
 import rasmus.*;
-import rasmus.entity.doodler.*;
+import rasmus.entity.*;
 import rasmus.entity.item.*;
 import rasmus.graphics.*;
 import rasmus.level.*;
 
-import java.awt.*;
 import java.util.*;
 
 public class WaveHandler {
@@ -40,25 +39,35 @@ public class WaveHandler {
         spawnItems();
     }
 
-    public void render(Graphics g) {
-        g.setColor(new Color(0x08343A));
-        g.setFont(new Font("Helvetica", Font.PLAIN, 24));
-        g.drawString("Wave: " + Integer.toString(wave), Game.WIDTH - 120, 40);
-    }
-
     private void nextWave() {
         wave++;
         timeScienceLastWave = 0;
+        waveTime += 1;
 
         switch (wave) {
             case 1 :
-                level.add(new EntityBasicRed(random.nextInt(960), random.nextInt(640), 32, 32));
+                level.add(new EntitySquare(new Sprite(0xFF0000, 32, 32), random.nextInt(960), random.nextInt(640)));
                 break;
             case 2 :
-                level.add(new EntityBasicRed(random.nextInt(960), random.nextInt(640), 32, 32));
+                level.add(new EntitySquare(new Sprite(0xFF0000, 32, 32), random.nextInt(960), random.nextInt(640)));
                 break;
             case 3 :
-                level.add(new EntityBasicYellow(random.nextInt(960), random.nextInt(640), 32, 32));
+                level.add(new EntityCircle(new Sprite(0xFFFF00, 32, 32), random.nextInt(960), random.nextInt(640)));
+                break;
+            case 4 :
+                level.add(new EntitySquare(new Sprite(0xFF0000, 32, 32), random.nextInt(960), random.nextInt(640)));
+                break;
+            case 5 :
+                level.add(new EntityChaser(new Sprite(0xFF00, 16, 16), random.nextInt(960), random.nextInt(640)));
+                break;
+            case 6 :
+                level.add(new EntityCircle(new Sprite(0xFF0000, 48, 48), random.nextInt(960), random.nextInt(640)));
+                break;
+            case 7 :
+                level.add(new EntityNoclip(new Sprite(0xAA00FF, 32, 32), random.nextInt(960), random.nextInt(640)));
+                break;
+            case 8 :
+
         }
     }
 

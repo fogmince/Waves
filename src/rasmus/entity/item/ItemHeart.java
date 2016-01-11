@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class ItemHeart extends Item {
 
-    private int health = 25;
+    private int health = 15;
 
     public ItemHeart(Sprite sprite, double x, double y) {
         super(sprite, x, y);

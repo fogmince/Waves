@@ -27,9 +27,7 @@ public class UIPickupText extends UIComponent {
 
     public void update() {
         time++;
-        if(time >= displayTime * 60) {
-            remove();
-        }
+        if(time >= displayTime * 60) remove();
 
         position.x += 1;
         position.y -= 1;

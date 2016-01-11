@@ -12,13 +12,11 @@ public class GameStateManager {
 
     public static final int MENU_STATE = 0;
     public static final int PLAY_STATE = 1;
-    public static final int SCORE_STATE = 2;
 
 
     public GameStateManager() {
         gameStates.add(new MenuState(this));
         gameStates.add(new PlayState(this));
-        gameStates.add(new ScoreState(this));
 
         currentState = MENU_STATE;
         gameStates.get(currentState).init();

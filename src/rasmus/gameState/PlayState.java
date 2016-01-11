@@ -14,51 +14,63 @@ public class PlayState extends GameState {
 
     private Player player;
     private Level level;
-    private WaveHandler wave;
     private Background background;
+    private WaveHandler wave;
 
-    private UIButton menu;
+    private ScoreUI scoreUI;
+
+    private UIButton menuButton_game;
+
+    private UIButton restartButton;
+    private UIButton menuButton;
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
     }
 
     public void init() {
-        menu = new UIButton(Sprite.buttonMenu, new Vector2i(15, 560));
-
         player = new Player(Sprite.player, 600, 30);
         level = new Level();
+        level.add(player);
         wave  = new WaveHandler(level);
-
         background = new Background();
 
-        level.add(player);
+        //Menu Button
+        menuButton_game = new UIButton(Sprite.buttonMenu, new Vector2i(15, 560));
+        player.getUI().addButton(menuButton_game);
 
-        ///// TEST
+        //Score screen Buttons
+        scoreUI = new ScoreUI(wave, player);
 
-        //level.add(new ItemHeart(Sprite.item_heart, 345, 345));
-        //level.add(new ItemStar(Sprite.item_star, 600, 400));
+        restartButton = new UIButton(Sprite.buttonRestart, new Vector2i(80, 440));
+        scoreUI.addButton(restartButton);
+
+        menuButton = new UIButton(Sprite.buttonMenuBig, new Vector2i(600, 440));
+        scoreUI.addButton(menuButton);
     }
 
     public void update() {
         background.update();
         level.update();
-        menu.update();
-        wave.update();
 
+        if(!player.isDead()){
+            wave.update();
+            player.setWave(wave.getWave());
 
-        if(menu.isClicked()) gsm.setState(GameStateManager.MENU_STATE);
+            if(menuButton_game.isClicked()) gsm.setState(GameStateManager.MENU_STATE);
+        } else {
+            scoreUI.update();
 
-        if(player.getHealth() == 0) {
-            gsm.setState(GameStateManager.SCORE_STATE);
+            if(restartButton.isClicked()) init();
+            if(menuButton.isClicked()) gsm.setState(GameStateManager.MENU_STATE);
         }
+
     }
 
     public void render(Graphics g) {
         background.render(g);
         level.render(g);
-        menu.render(g);
-        wave.render(g);
 
+        if(player.isDead()) scoreUI.render(g);
     }
 }

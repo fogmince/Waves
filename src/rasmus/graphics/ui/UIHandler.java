@@ -13,8 +13,9 @@ public class UIHandler {
     }
 
     public void update() {
-        for(UIComponent component : components) {
-            component.update();
+        for(int i = 0; i < components.size(); i++) {
+            components.get(i).update();
+            if(components.get(i).isRemoved()) components.remove(i);
         }
     }
 
