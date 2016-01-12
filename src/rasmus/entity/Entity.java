@@ -1,6 +1,7 @@
 package rasmus.entity;
 
 import rasmus.*;
+import rasmus.entity.projectile.*;
 import rasmus.graphics.*;
 import rasmus.level.*;
 

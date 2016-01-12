@@ -1,21 +1,18 @@
-package rasmus;
+package rasmus.entity;
 
-import rasmus.entity.*;
 import rasmus.graphics.*;
 
 public class EntityFireer extends Entity {
 
-    /**
-     * TODO: BE ABLE TO SPAWN IN MULTIPLE POSITIONS AND DIRE IN THE RIGHT DIRECTION
-     */
-
-    public EntityFireer(Sprite sprite, double x, double y) {
+    public EntityFireer(Sprite sprite, double x, double y, int dir) {
         super(sprite, x, y);
         setSpeed(4);
-        xa = 0;
+
+        if(dir == 0 || dir == 2) xa = 0;
+        if(dir == 1 || dir == 3) ya = 0;
 
         //Firering dir
-        dir = 0;
+        this.dir = dir;
     }
 
     public void update() {

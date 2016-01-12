@@ -13,9 +13,15 @@ public class Player extends Entity {
     private PlayerUI ui;
 
     private double health;
+
     private double score;
+    private double scoreIncrease;
     private double scoreMultiplier;
+    private double scoreMultiplierTime;
+
     private int wave;
+
+    private int time = 0;
 
     public Player(Sprite sprite, int x, int y) {
         super(sprite, x, y);
@@ -26,13 +32,15 @@ public class Player extends Entity {
         health = 100;
         score = 0;
         //SCORE PER UPDATE 18 per sec
-        scoreMultiplier = 0.3;
+        scoreMultiplier = 1;
+        scoreIncrease = 0.3;
+        scoreMultiplierTime = 0;
     }
 
     public void update() {
         super.update();
-
-        score += scoreMultiplier;
+        if(scoreMultiplier != 1) time++;
+        else time = 0;
 
         if(Keyboard.up) ya = -1;
         if(Keyboard.down) ya = 1;
@@ -40,6 +48,13 @@ public class Player extends Entity {
         if(Keyboard.right) xa = 1;
 
         move();
+
+        score += scoreIncrease * scoreMultiplier;
+
+        if(time % scoreMultiplierTime == 0 && scoreMultiplier != 1) {
+            scoreMultiplier = 1;
+            scoreMultiplierTime = 0;
+        }
 
         if(level.getNearestEntity(this, 10000) != null && level.entityCollision(level.getNearestEntity(this, 10000), this)) {
             //DMG DEALT PER UPDATE 30 PER SEC
@@ -120,5 +135,18 @@ public class Player extends Entity {
 
     public void setWave(int wave) {
         this.wave = wave;
+    }
+
+    public void setMultiplier(double amount, int time) {
+        scoreMultiplier += amount;
+        scoreMultiplierTime += time * 60;
+    }
+
+    public boolean hasMultiplier() {
+        return scoreMultiplier != 1;
+    }
+
+    public double getMultiplier() {
+        return scoreMultiplier;
     }
 }

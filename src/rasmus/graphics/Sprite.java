@@ -39,6 +39,7 @@ public class Sprite {
     //Items
     public static final Sprite item_heart = new Sprite(itemPath + "heart");
     public static final Sprite item_star = new Sprite(itemPath + "star");
+    public static final Sprite item_scoreMultiplier = new Sprite(itemPath + "scoreMultiplier");
 
     private String path;
     private int width, height;

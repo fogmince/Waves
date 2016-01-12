@@ -1,5 +1,6 @@
-package rasmus.entity;
+package rasmus.entity.projectile;
 
+import rasmus.entity.*;
 import rasmus.graphics.*;
 
 public class Projectile extends Entity {

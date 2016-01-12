@@ -1,5 +1,6 @@
 package rasmus.gameState;
 
+import rasmus.*;
 import rasmus.entity.*;
 import rasmus.graphics.*;
 import rasmus.graphics.background.*;
@@ -30,7 +31,7 @@ public class PlayState extends GameState {
     }
 
     public void init() {
-        player = new Player(Sprite.player, 600, 30);
+        player = new Player(Sprite.player, Game.WIDTH / 2 - 16, Game.HEIGHT / 2 - 16);
         level = new Level();
         level.add(player);
         wave  = new WaveHandler(level);

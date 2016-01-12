@@ -18,6 +18,8 @@ public class PlayerUI {
     private UILabel score;
     private UILabel wave;
 
+    private UILabel multiplier;
+
     public PlayerUI(Player player) {
         this.player = player;
         handler = new UIHandler();
@@ -33,6 +35,8 @@ public class PlayerUI {
 
         wave = new UILabel(new Vector2i(Game.WIDTH - 120, 40), "Wave: 1").setColor(new Color(0x08343A)).setFont(new Font("Helvetica", Font.PLAIN, 24));
         handler.addComponent(wave);
+
+        multiplier = new UILabel(new Vector2i(25, 120), "Multiplier: " + String.valueOf(player.getMultiplier())).setColor(new Color(0xFF003A)).setFont(new Font("Helvetica", Font.ITALIC, 18));
     }
 
 
@@ -43,12 +47,16 @@ public class PlayerUI {
         healthAmount.setText(String.valueOf(player.getHealth()));
         score.setText("Score: " + String.valueOf(player.getScore()));
         wave.setText("Wave: " + String.valueOf(player.getWave()));
+        multiplier.setText("Multiplier: x " + String.valueOf(player.getMultiplier()));
 
         if(player.getHealth() < 10) {
             healthAmount.setPosition(110, 58);
         } else {
             healthAmount.setPosition(100, 58);
         }
+
+        if(player.hasMultiplier()) handler.addComponent(multiplier);
+        else multiplier.remove();
     }
 
     public void addPickUpText(String text, double time, double x, double y, Color color) {

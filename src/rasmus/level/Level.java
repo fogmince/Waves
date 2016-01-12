@@ -3,6 +3,7 @@ package rasmus.level;
 import rasmus.entity.*;
 import rasmus.entity.item.*;
 import rasmus.entity.particle.*;
+import rasmus.entity.projectile.*;
 
 import java.awt.*;
 import java.util.*;

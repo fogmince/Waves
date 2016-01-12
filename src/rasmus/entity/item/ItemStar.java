@@ -12,7 +12,7 @@ public class ItemStar extends Item {
     public ItemStar(Sprite sprite, double x, double y) {
         super(sprite, x, y);
 
-        score = 500;
+        score = 175;
 
         setText("+ " + score + " Score");
         setTextTime(1);

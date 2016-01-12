@@ -16,6 +16,10 @@ public class WaveHandler {
     private double waveTime;
     private double timeScienceLastWave;
 
+    private int timeSinceItem;
+    private int itemTime;
+    private boolean canSpawnItem;
+
     private final Random random = new Random();
 
     public WaveHandler(Level level) {
@@ -24,6 +28,9 @@ public class WaveHandler {
         wave = 0;
         waveTime = 10;
         timeScienceLastWave = 0;
+        timeSinceItem = 0;
+        itemTime = 5 + random.nextInt(15) * 60;
+        canSpawnItem = false;
     }
 
     public void update() {
@@ -35,6 +42,16 @@ public class WaveHandler {
 
         if(timeScienceLastWave >= waveTime) nextWave();
 
+
+        if(!canSpawnItem) {
+            timeSinceItem++;
+            if(timeSinceItem % itemTime == 0) {
+                canSpawnItem();
+                timeSinceItem = 0;
+            }
+        } else {
+            itemTime = random.nextInt((15) + 5) * 60;
+        }
 
         spawnItems();
     }
@@ -67,17 +84,33 @@ public class WaveHandler {
                 level.add(new EntityNoclip(new Sprite(0xAA00FF, 32, 32), random.nextInt(960), random.nextInt(640)));
                 break;
             case 8 :
-                level.add(new EntityFireer(new Sprite(0xFFA228, 64, 64), Game.WIDTH - 70, Game.HEIGHT / 2));
+               spawnFireer(new Sprite(0xFFAB2D, 64, 64));
                 break;
+            case 9 :
+                level.add(new EntityNoclip(new Sprite(0xAA00FF, 32, 32), random.nextInt(960), random.nextInt(640)));
+                break;
+            case 10 :
+                spawnFireer(new Sprite(0xFFAB2D, 64, 64));
         }
     }
 
     private void spawnItems() {
-        if(wave >= 1 && random.nextInt(500) == 0) {
-            if(random.nextBoolean()) {
-                level.add(new ItemStar(Sprite.item_star, random.nextInt(Game.WIDTH - 40), random.nextInt((Game.HEIGHT - 64))));
-            } else {
-                level.add(new ItemHeart(Sprite.item_heart, random.nextInt(Game.WIDTH - 40), random.nextInt(Game.HEIGHT - 64)));
+        if(wave >= 1 && canSpawnItem) {
+            int rand = random.nextInt(8);
+
+            switch (rand) {
+                case 0 :
+                    level.add(new ItemStar(Sprite.item_star, random.nextInt(Game.WIDTH - 40), random.nextInt((Game.HEIGHT - 64))));
+                    canSpawnItem();
+                    break;
+                case 1 :
+                    level.add(new ItemHeart(Sprite.item_heart, random.nextInt(Game.WIDTH - 40), random.nextInt((Game.HEIGHT - 64))));
+                    canSpawnItem();
+                    break;
+                case 2 :
+                    level.add(new ItemMultiplier(Sprite.item_scoreMultiplier, random.nextInt(Game.WIDTH - 40), random.nextInt((Game.HEIGHT - 64))));
+                    canSpawnItem();
+                    break;
             }
         }
     }
@@ -86,4 +119,22 @@ public class WaveHandler {
         return wave;
     }
 
+    public void canSpawnItem() {
+        if(canSpawnItem) canSpawnItem = false;
+        else canSpawnItem = true;
+    }
+
+    private void spawnFireer(Sprite sprite) {
+        int pos = random.nextInt(4);
+
+        if(pos == 0) {
+            level.add(new EntityFireer(sprite, Game.WIDTH - 70, Game.HEIGHT / 2, pos));
+        } else if(pos == 1) {
+            level.add(new EntityFireer(sprite, Game.WIDTH / 2, Game.HEIGHT - 92, pos));
+        } else if(pos == 2) {
+            level.add(new EntityFireer(sprite, 2, Game.HEIGHT / 2, pos));
+        } else if(pos == 3) {
+            level.add(new EntityFireer(sprite, Game.WIDTH / 2, 2, pos));
+        }
+    }
 }
