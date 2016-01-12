@@ -1,11 +1,10 @@
 package rasmus.entity;
 
 import rasmus.*;
-import rasmus.graphics.Sprite;
+import rasmus.graphics.*;
 import rasmus.level.*;
-import rasmus.level.wave.*;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.util.*;
 
 public class Entity {
@@ -15,6 +14,7 @@ public class Entity {
     protected int width, height;
 
     protected double xSpeed, ySpeed;
+    protected int dir;
 
     protected int xa = 0, ya = 0;
     protected final Random random = new Random();
@@ -44,27 +44,31 @@ public class Entity {
         if(collision(xa, 0)) xa *= -1;
         if(collision(0, ya)) ya *= -1;
 
-        if (xa > 0) x += xa * xSpeed;
-        if (xa < 0) x += xa * xSpeed;
+        if (xa < 0) dir = 0;
+        if (xa > 0) dir = 2;
+        if (ya < 0) dir = 1;
+        if (ya > 0) dir = 3;
 
-        if (ya < 0) y += ya * ySpeed;
-        if (ya > 0) y += ya * ySpeed;
+        x += xa * xSpeed;
+        y += ya * ySpeed;
     }
-
-    /**
-     * TODO: MAKE COLLISION WORK WITH OTHER ENTITY SIZES
-     */
 
     protected boolean collision(double xa, double ya) {
         boolean collision = false;
 
-        if(xa == -1 && x + xa < 0) collision = true;
-        if(xa == 1 && x + xa > Game.WIDTH - width * 2 + 23) collision = true;
+        if(xa < 0 && x + xa <= 0) collision = true;
+        if(xa > 0 && x + width + xa >= Game.WIDTH - 5) collision = true;
 
-        if(ya == -1 && y + ya < 0) collision = true;
-        if(ya == 1 && y + ya > Game.HEIGHT - height * 2 + 1) collision = true;
+        if(ya < 0 && y + ya <= 0) collision = true;
+        if(ya > 0 && y + height + ya > Game.HEIGHT - 30) collision = true;
 
         return collision;
+    }
+
+    public void fireProjectilesRand(int chance, Sprite sprite) {
+        if(random.nextInt(chance) == 0) {
+            level.add(new Projectile(sprite, x + width / 2 - 1, y + width / 2 - 1, dir));
+        }
     }
 
     public void render(Graphics g) {

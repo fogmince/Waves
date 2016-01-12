@@ -1,4 +1,4 @@
-package rasmus.graphics.ui;
+package rasmus.graphics.ui.components;
 
 import java.awt.*;
 import java.util.*;

@@ -2,11 +2,10 @@ package rasmus.graphics.ui;
 
 import rasmus.*;
 import rasmus.graphics.Sprite;
+import rasmus.graphics.ui.components.*;
 import rasmus.util.*;
 
 import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MenuUI {
 

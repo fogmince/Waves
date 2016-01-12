@@ -25,12 +25,8 @@ public class EntityNoclip extends Entity {
 
     protected boolean collision(double xa, double ya) {
         if(x < -16) x = Game.WIDTH;
-
         if(x > Game.WIDTH) x = 0;
-
-
         if(y < -16) y = Game.HEIGHT;
-
         if(y > Game.HEIGHT) y = 0;
 
         return false;

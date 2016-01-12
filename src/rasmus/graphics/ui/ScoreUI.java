@@ -3,6 +3,7 @@ package rasmus.graphics.ui;
 import rasmus.*;
 import rasmus.entity.*;
 import rasmus.graphics.*;
+import rasmus.graphics.ui.components.*;
 import rasmus.level.wave.*;
 import rasmus.util.*;
 
@@ -27,18 +28,18 @@ public class ScoreUI {
         gameOver = new UISprite(new Vector2i(Game.WIDTH / 2 - 273, 60), Sprite.gameGameOver);
         handler.addComponent(gameOver);
 
-        wave = new UILabel(new Vector2i(Game.WIDTH / 2 - 60, 260), "").setColor(Color.BLACK);
+        wave = new UILabel(new Vector2i(Game.WIDTH / 2 - 150, 300), "").setColor(new Color(0xFFFFFF));
         handler.addComponent(wave);
 
-        score = new UILabel(new Vector2i(Game.WIDTH / 2 - 60, 310), "").setColor(Color.BLACK);
+        score = new UILabel(new Vector2i(Game.WIDTH / 2 - 150, 350), "").setColor(new Color(0xFFFFFF));
         handler.addComponent(score);
     }
 
     public void update() {
         handler.update();
 
-        wave.setText(String.valueOf("Wave: " + waveHandler.getWave()));
-        score.setText(String.valueOf("Score: " + player.getScore()));
+        wave.setText(String.valueOf("You make it to Wave: " + waveHandler.getWave()));
+        score.setText(String.valueOf("With a Score of: " + player.getScore()));
     }
 
     public void render(Graphics g) {

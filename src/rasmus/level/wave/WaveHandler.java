@@ -42,7 +42,7 @@ public class WaveHandler {
     private void nextWave() {
         wave++;
         timeScienceLastWave = 0;
-        waveTime += 1;
+        waveTime += 0.5;
 
         switch (wave) {
             case 1 :
@@ -67,7 +67,8 @@ public class WaveHandler {
                 level.add(new EntityNoclip(new Sprite(0xAA00FF, 32, 32), random.nextInt(960), random.nextInt(640)));
                 break;
             case 8 :
-
+                level.add(new EntityFireer(new Sprite(0xFFA228, 64, 64), Game.WIDTH - 70, Game.HEIGHT / 2));
+                break;
         }
     }
 

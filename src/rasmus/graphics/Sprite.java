@@ -11,30 +11,34 @@ public class Sprite {
     private static final String uiPath = "/textures/ui/";
     private static final String entityPath = "/textures/entity/";
     private static final String particlePath = "/textures/entity/particle/";
+    private static final String projectilePath = "/textures/entity/projectile/";
 
     //UI
-    public static final Sprite gameTitle = new Sprite(uiPath + "game_title.png");
-    public static final Sprite buttonPlay = new Sprite(uiPath + "button_Play.png");
-    public static final Sprite buttonHelp = new Sprite(uiPath + "button_Help.png");
-    public static final Sprite buttonQuit = new Sprite(uiPath + "button_Quit.png");
+    public static final Sprite gameTitle = new Sprite(uiPath + "game_title");
+    public static final Sprite buttonPlay = new Sprite(uiPath + "button_Play");
+    public static final Sprite buttonHelp = new Sprite(uiPath + "button_Help");
+    public static final Sprite buttonQuit = new Sprite(uiPath + "button_Quit");
 
-    public static final Sprite gameGameOver = new Sprite(uiPath + "game_GameOver.png");
+    public static final Sprite gameGameOver = new Sprite(uiPath + "game_GameOver");
 
-    public static final Sprite buttonMenu = new Sprite(uiPath + "button_Menu.png");
+    public static final Sprite buttonMenu = new Sprite(uiPath + "button_Menu");
 
-    public static final Sprite buttonMenuBig = new Sprite(uiPath + "button_Menu_big.png");
-    public static final Sprite buttonRestart = new Sprite(uiPath + "button_Restart.png");
+    public static final Sprite buttonMenuBig = new Sprite(uiPath + "button_Menu_big");
+    public static final Sprite buttonRestart = new Sprite(uiPath + "button_Restart");
 
     //Entity
-    public static final Sprite player = new Sprite(entityPath + "player.png");
+    public static final Sprite player = new Sprite(entityPath + "player");
 
     //Particle
     public static final Sprite red_particle = new Sprite(0xFF0000, 8, 8);
     public static final Sprite yellow_particle = new Sprite(0xFFFF00, 8, 8);
 
+    //Projectile
+    public static final Sprite projectile_Red = new Sprite(projectilePath + "projectile_red");
+
     //Items
-    public static final Sprite item_heart = new Sprite(itemPath + "heart.png");
-    public static final Sprite item_star = new Sprite(itemPath + "star.png");
+    public static final Sprite item_heart = new Sprite(itemPath + "heart");
+    public static final Sprite item_star = new Sprite(itemPath + "star");
 
     private String path;
     private int width, height;
@@ -43,7 +47,7 @@ public class Sprite {
     private BufferedImage image;
 
     public Sprite(String path) {
-        this.path = path;
+        this.path = path + ".png";
         loadImage();
     }
 

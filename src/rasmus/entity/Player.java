@@ -1,5 +1,6 @@
 package rasmus.entity;
 
+import rasmus.*;
 import rasmus.graphics.Sprite;
 import rasmus.graphics.ui.*;
 import rasmus.input.*;
@@ -13,6 +14,7 @@ public class Player extends Entity {
 
     private double health;
     private double score;
+    private double scoreMultiplier;
     private int wave;
 
     public Player(Sprite sprite, int x, int y) {
@@ -23,13 +25,14 @@ public class Player extends Entity {
         setSpeed(7);
         health = 100;
         score = 0;
+        //SCORE PER UPDATE 18 per sec
+        scoreMultiplier = 0.3;
     }
 
     public void update() {
         super.update();
 
-        //SCORE PER UPDATE 18 per sec
-        score += 0.3;
+        score += scoreMultiplier;
 
         if(Keyboard.up) ya = -1;
         if(Keyboard.down) ya = 1;
@@ -43,6 +46,10 @@ public class Player extends Entity {
             dealDmg(0.5);
         }
 
+        if(level.getNearestProjectile(this, 10000) != null && level.entityCollision(level.getNearestProjectile(this, 10000), this)) {
+            dealDmg(level.getNearestProjectile(this, 1000).getDamage());
+        }
+
         xa = 0;
         ya = 0;
 
@@ -50,21 +57,25 @@ public class Player extends Entity {
 
         ui.update();
 
+
+        if(Keyboard.esc) health = 0;
         if(health <= 0) {
             level.clearEntities();
             remove();
         }
     }
 
-    protected void move() {
+   protected void move() {
         if(collision(xa, 0)) xa = 0;
         if(collision(0, ya)) ya = 0;
 
-        if (xa > 0) x += xa * xSpeed;
-        if (xa < 0) x += xa * xSpeed;
+        if (xa < 0) dir = 0;
+        if (xa > 0) dir = 2;
+        if (ya < 0) dir = 1;
+        if (ya > 0) dir = 3;
 
-        if (ya < 0) y += ya * ySpeed;
-        if (ya > 0) y += ya * ySpeed;
+        x += xa * xSpeed;
+        y += ya * ySpeed;
     }
 
     public void render(Graphics g) {

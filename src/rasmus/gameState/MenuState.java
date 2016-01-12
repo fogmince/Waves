@@ -5,6 +5,7 @@ import rasmus.entity.*;
 import rasmus.graphics.Sprite;
 import rasmus.graphics.background.*;
 import rasmus.graphics.ui.*;
+import rasmus.graphics.ui.components.*;
 import rasmus.level.*;
 import rasmus.util.*;
 

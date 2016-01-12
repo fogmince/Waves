@@ -1,4 +1,4 @@
-package rasmus.graphics.ui;
+package rasmus.graphics.ui.components;
 
 import org.w3c.dom.ranges.*;
 import rasmus.util.*;

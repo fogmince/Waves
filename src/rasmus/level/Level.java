@@ -13,8 +13,7 @@ public class Level {
     private List<Entity> entities = new ArrayList<>();
     private List<Particle> particles = new ArrayList<>();
     private List<Item> items = new ArrayList<>();
-
-    private List<String> text = new ArrayList<>();
+    private List<Projectile> projectiles = new ArrayList<>();
 
     public Level() {
 
@@ -27,6 +26,10 @@ public class Level {
             particles.get(i).update();
         }
 
+        for(int i = 0; i < projectiles.size(); i++) {
+            projectiles.get(i).update();
+        }
+
         for(int i = 0; i < entities.size(); i++) {
             entities.get(i).update();
         }
@@ -37,12 +40,16 @@ public class Level {
     }
 
     private void remove() {
-        for(int i = 0; i < entities.size(); i++) {
-            if(entities.get(i).isRemoved()) entities.remove(i);
-        }
-
         for(int i = 0; i < particles.size(); i++) {
             if(particles.get(i).isRemoved()) particles.remove(i);
+        }
+
+        for(int i = 0; i < projectiles.size(); i++) {
+            if(projectiles.get(i).isRemoved()) projectiles.remove(i);
+        }
+
+        for(int i = 0; i < entities.size(); i++) {
+            if(entities.get(i).isRemoved()) entities.remove(i);
         }
 
         for(int i = 0; i < items.size(); i++) {
@@ -54,6 +61,10 @@ public class Level {
     public void render(Graphics g) {
         for(int i = 0; i < particles.size(); i++) {
             particles.get(i).render(g);
+        }
+
+        for(int i = 0; i < projectiles.size(); i++) {
+            projectiles.get(i).render(g);
         }
 
         for(int i = 0; i < entities.size(); i++) {
@@ -70,6 +81,8 @@ public class Level {
             particles.add((Particle) e);
         } else if(e instanceof Item) {
             items.add((Item) e);
+        } else if(e instanceof Projectile) {
+            projectiles.add((Projectile) e);
         } else {
             entities.add(e);
         }
@@ -80,6 +93,7 @@ public class Level {
     public void clearEntities() {
         entities.clear();
         particles.clear();
+        projectiles.clear();
         items.clear();
     }
 
@@ -109,6 +123,33 @@ public class Level {
             if(distance < lastDistance && distance <= range) {
                 lastDistance = distance;
                 nearest = entities.get(i);
+            }
+        }
+
+        return nearest;
+    }
+
+    public Projectile getNearestProjectile(Entity e, double range) {
+        Projectile nearest = null;
+        double lastDistance = 10000;
+
+        double x = e.getX();
+        double y = e.getY();
+
+        for(int i = 0; i < projectiles.size(); i++) {
+            Entity entity = projectiles.get(i);
+
+            double ex = entity.getX();
+            double ey = entity.getY();
+
+            double dx = Math.abs(x - ex);
+            double dy = Math.abs(y - ey);
+
+            double distance = Math.sqrt((dx * dx + (dy * dy)));
+
+            if(distance < lastDistance && distance <= range) {
+                lastDistance = distance;
+                nearest = projectiles.get(i);
             }
         }
 

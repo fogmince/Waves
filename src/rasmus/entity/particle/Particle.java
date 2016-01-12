@@ -27,8 +27,4 @@ public class Particle extends Entity {
 
         move();
     }
-
-    public void render(Graphics g) {
-        g.drawImage(sprite.getSprite(), (int) x, (int) y, null);
-    }
 }

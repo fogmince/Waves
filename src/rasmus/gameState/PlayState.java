@@ -4,6 +4,7 @@ import rasmus.entity.*;
 import rasmus.graphics.*;
 import rasmus.graphics.background.*;
 import rasmus.graphics.ui.*;
+import rasmus.graphics.ui.components.*;
 import rasmus.level.*;
 import rasmus.level.wave.*;
 import rasmus.util.*;
@@ -42,10 +43,10 @@ public class PlayState extends GameState {
         //Score screen Buttons
         scoreUI = new ScoreUI(wave, player);
 
-        restartButton = new UIButton(Sprite.buttonRestart, new Vector2i(80, 440));
+        restartButton = new UIButton(Sprite.buttonRestart, new Vector2i(80, 480));
         scoreUI.addButton(restartButton);
 
-        menuButton = new UIButton(Sprite.buttonMenuBig, new Vector2i(600, 440));
+        menuButton = new UIButton(Sprite.buttonMenuBig, new Vector2i(600, 480));
         scoreUI.addButton(menuButton);
     }
 
