@@ -50,7 +50,7 @@ public class WaveHandler {
                 timeSinceItem = 0;
             }
         } else {
-            itemTime = random.nextInt((15) + 5) * 60;
+            itemTime = 5 + random.nextInt(15) * 60;
         }
 
         spawnItems();
@@ -91,6 +91,10 @@ public class WaveHandler {
                 break;
             case 10 :
                 spawnFireer(new Sprite(0xFFAB2D, 64, 64));
+                break;
+            case 11 :
+                level.clearEntities();
+                level.add(new EntityNoclip(new Sprite(0xAA00FF, 32, 32), random.nextInt(960), random.nextInt(640)));
         }
     }
 

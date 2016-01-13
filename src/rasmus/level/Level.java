@@ -11,10 +11,11 @@ import java.util.List;
 
 public class Level {
 
-    private List<Entity> entities = new ArrayList<>();
-    private List<Particle> particles = new ArrayList<>();
-    private List<Item> items = new ArrayList<>();
-    private List<Projectile> projectiles = new ArrayList<>();
+    private List<Entity> entities = new ArrayList<Entity>();
+    private List<Particle> particles = new ArrayList<Particle>();
+    private List<Item> items = new ArrayList<Item>();
+    private List<Projectile> projectiles = new ArrayList<Projectile>();
+    private List<Player> players = new ArrayList<Player>();
 
     public Level() {
 
@@ -29,6 +30,10 @@ public class Level {
 
         for(int i = 0; i < projectiles.size(); i++) {
             projectiles.get(i).update();
+        }
+
+        for(int i = 0; i < players.size(); i++) {
+            players.get(i).update();
         }
 
         for(int i = 0; i < entities.size(); i++) {
@@ -47,6 +52,10 @@ public class Level {
 
         for(int i = 0; i < projectiles.size(); i++) {
             if(projectiles.get(i).isRemoved()) projectiles.remove(i);
+        }
+
+        for(int i = 0; i < players.size(); i++) {
+            if(players.get(i).isDead()) players.remove(i);
         }
 
         for(int i = 0; i < entities.size(); i++) {
@@ -68,6 +77,10 @@ public class Level {
             projectiles.get(i).render(g);
         }
 
+        for(int i = 0; i < players.size(); i++) {
+            players.get(i).render(g);
+        }
+
         for(int i = 0; i < entities.size(); i++) {
             entities.get(i).render(g);
         }
@@ -84,6 +97,8 @@ public class Level {
             items.add((Item) e);
         } else if(e instanceof Projectile) {
             projectiles.add((Projectile) e);
+        } else if(e instanceof Player) {
+            players.add((Player) e);
         } else {
             entities.add(e);
         }
@@ -91,11 +106,18 @@ public class Level {
         e.setLevel(this);
     }
 
-    public void clearEntities() {
+    public void clearAll() {
         entities.clear();
         particles.clear();
         projectiles.clear();
         items.clear();
+        players.clear();
+    }
+
+    public void clearEntities() {
+        entities.clear();
+        particles.clear();
+        projectiles.clear();
     }
 
     public void clearItems() {
@@ -177,7 +199,7 @@ public class Level {
     }
 
     public Player getPlayer() {
-        return (Player) entities.get(0);
+        return players.get(0);
     }
 
 }

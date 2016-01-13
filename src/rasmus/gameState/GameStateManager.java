@@ -6,7 +6,7 @@ import java.util.List;
 
 public class GameStateManager {
 
-    private List<GameState> gameStates = new ArrayList<>();
+    private List<GameState> gameStates = new ArrayList<GameState>();
 
     private int currentState;
 

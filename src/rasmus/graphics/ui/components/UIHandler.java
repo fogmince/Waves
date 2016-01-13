@@ -6,7 +6,7 @@ import java.util.List;
 
 public class UIHandler {
 
-    private List<UIComponent> components = new ArrayList<>();
+    private List<UIComponent> components = new ArrayList<UIComponent>();
 
     public UIHandler() {
 
